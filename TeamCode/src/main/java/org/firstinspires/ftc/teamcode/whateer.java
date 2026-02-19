@@ -12,42 +12,26 @@ import org.firstinspires.ftc.robotcore.external.JavaUtil;
 @TeleOp(name = "whateer5 (Blocks to Java)")
 public class whateer extends LinearOpMode {
 
-    private Limelight3A limelight;
-    private DcMotor motorBR;
-    private DcMotor motorFR;
-    private DcMotor motorFL;
-    private DcMotor motorBL;
-    private Servo launchServo;
-    private Servo intakeLeft;
-    private Servo intakeMiddle;
-    private DcMotor shooterL;
-    private DcMotor shooterR;
-    private DcMotor intakeMotor;
-    private Servo intakeRight;
+     Limelight3A limelight;
+     DcMotor motorBR;
+     DcMotor motorFR;
+     DcMotor motorFL;
+     DcMotor motorBL;
+     Servo launchServo;
+     Servo intakeLeft;
+     Servo intakeMiddle;
+     DcMotor shooterL;
+     DcMotor shooterR;
+    DcMotor intakeMotor;
+    Servo intakeRight;
 
     double frontLeftPower;
     double backLeftPower;
     double frontRightPower;
     double backRightPower;
 
-    /**
-     * This OpMode illustrates driving a 4-motor Omni-Directional (or Holonomic) robot.
-     * This code will work with either a Mecanum-Drive or an X-Drive train.
-     * Note that a Mecanum drive must display an X roller-pattern when viewed from above.
-     *
-     * Also note that it is critical to set the correct rotation direction for each motor. See details below.
-     *
-     * Holonomic drives provide the ability for the robot to move in three axes (directions) simultaneously.
-     * Each motion axis is controlled by one Joystick axis.
-     *
-     * 1) Axial -- Driving forward and backward -- Left-joystick Forward/Backward
-     * 2) Lateral -- Strafing right and left -- Left-joystick Right and Left
-     * 3) Yaw -- Rotating Clockwise and counter clockwise -- Right-joystick Right and Left
-     *
-     * This code is written assuming that the right-side motors need to be reversed for the robot to drive forward.
-     * When you first test your robot, if it moves backward when you push the left stick forward, then you must flip
-     * the direction of all 4 motors (see code below).
-     */
+
+
     @Override
     public void runOpMode() {
         ElapsedTime runtime;
@@ -128,7 +112,7 @@ public class whateer extends LinearOpMode {
                 backRightPower = backRightPower / max;
             }
             // Send calculated power to wheels.
-            if (doAutoAim == false) {
+            if (!doAutoAim) {
                 motorFL.setPower(frontLeftPower);
                 motorFR.setPower(frontRightPower);
                 motorBL.setPower(backLeftPower);
@@ -194,16 +178,16 @@ public class whateer extends LinearOpMode {
                 launchServo.setPosition(0);
             }
             if (servoYTimer >= 0) {
-                servoYTimer += -1;
+                servoYTimer -= 1;
             }
             if (servoXTimer >= 0) {
-                servoXTimer += -1;
+                servoXTimer -= 1;
             }
             if (servoATimer >= 0) {
-                servoATimer += -1;
+                servoATimer -= 1;
             }
             if (servoBTimer >= 0) {
-                servoBTimer += -1;
+                servoBTimer -= 1;
             }
             if (gamepad1.dpad_up) {
                 doAutoAim = true;
@@ -211,7 +195,7 @@ public class whateer extends LinearOpMode {
             if (gamepad1.dpad_down) {
                 doAutoAim = false;
             }
-            if (doAutoAim == true) {
+            if (doAutoAim) {
                 if (result.getTx() < 15) {
                     motorBL.setPower(0.3);
                     motorFL.setPower(0.3);
@@ -239,7 +223,7 @@ public class whateer extends LinearOpMode {
                     motorBL.setPower(0);
                 }
             }
-            if (doAutoAim == false) {
+            if (!doAutoAim) {
                 motorFL.setPower(yaw);
                 motorBL.setPower(-1 * yaw);
                 motorBR.setPower(-1 * yaw);
@@ -248,21 +232,6 @@ public class whateer extends LinearOpMode {
         }
     }
 
-    /**
-     * This function is used to test your motor directions.
-     *
-     * Each button should make the corresponding motor run FORWARD.
-     *
-     *   1) First get all the motors to take to correct positions on the robot
-     *      by adjusting your Robot Configuration if necessary.
-     *
-     *   2) Then make sure they run in the correct direction by modifying the
-     *      the setDirection() calls above.
-     */
-    private void testMotorDirections() {
-        frontLeftPower = gamepad1.x ? 1 : 0;
-        backLeftPower = gamepad1.a ? 1 : 0;
-        frontRightPower = gamepad1.y ? 1 : 0;
-        backRightPower = gamepad1.b ? 1 : 0;
-    }
+
+
 }
