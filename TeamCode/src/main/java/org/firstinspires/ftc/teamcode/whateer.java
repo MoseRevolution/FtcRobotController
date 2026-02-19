@@ -33,5 +33,8 @@ public class whateer {
     double frontRightPower;
     double backRightPower;
 
+    public void help(){
+
+    }
 
 }
