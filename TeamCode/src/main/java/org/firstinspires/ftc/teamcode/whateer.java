@@ -12,18 +12,18 @@ import org.firstinspires.ftc.robotcore.external.JavaUtil;
 @TeleOp(name = "whateer5 (Blocks to Java)")
 public class whateer extends LinearOpMode {
 
-     Limelight3A limelight;
-     DcMotor motorBR;
-     DcMotor motorFR;
-     DcMotor motorFL;
-     DcMotor motorBL;
-     Servo launchServo;
-     Servo intakeLeft;
-     Servo intakeMiddle;
-     DcMotor shooterL;
-     DcMotor shooterR;
-    DcMotor intakeMotor;
-    Servo intakeRight;
+    private Limelight3A limelight;
+     private DcMotor motorBR;
+    private DcMotor motorFR;
+    private DcMotor motorFL;
+    private DcMotor motorBL;
+    private Servo launchServo;
+    private Servo intakeLeft;
+    private Servo intakeMiddle;
+    private DcMotor shooterL;
+    private DcMotor shooterR;
+    private DcMotor intakeMotor;
+    private Servo intakeRight;
 
     double frontLeftPower;
     double backLeftPower;
