@@ -56,12 +56,12 @@ public class whateer extends LinearOpMode {
         float lateral;
         float yaw;
         double max;
-        float doAutoAim;
-        float servoBTimer;
-        float servoATimer;
-        float servoYTimer;
-        float servoXTimer;
-        LLResult result;
+        boolean doAutoAim = false ;
+        int servoBTimer = 0;
+        int servoATimer = 0;
+        int servoYTimer = 0;
+        int servoXTimer = 0;
+        LLResult result = null;
 
         limelight = hardwareMap.get(Limelight3A.class, "limelight");
         motorBR = hardwareMap.get(DcMotor.class, "motorBR");
@@ -128,7 +128,7 @@ public class whateer extends LinearOpMode {
                 backRightPower = backRightPower / max;
             }
             // Send calculated power to wheels.
-            if (doAutoAim == 0) {
+            if (doAutoAim == false) {
                 motorFL.setPower(frontLeftPower);
                 motorFR.setPower(frontRightPower);
                 motorBL.setPower(backLeftPower);
@@ -206,12 +206,12 @@ public class whateer extends LinearOpMode {
                 servoBTimer += -1;
             }
             if (gamepad1.dpad_up) {
-                doAutoAim = 1;
+                doAutoAim = true;
             }
             if (gamepad1.dpad_down) {
-                doAutoAim = 0;
+                doAutoAim = false;
             }
-            if (doAutoAim == 1) {
+            if (doAutoAim == true) {
                 if (result.getTx() < 15) {
                     motorBL.setPower(0.3);
                     motorFL.setPower(0.3);
@@ -239,7 +239,7 @@ public class whateer extends LinearOpMode {
                     motorBL.setPower(0);
                 }
             }
-            if (doAutoAim == 0) {
+            if (doAutoAim == false) {
                 motorFL.setPower(yaw);
                 motorBL.setPower(-1 * yaw);
                 motorBR.setPower(-1 * yaw);
